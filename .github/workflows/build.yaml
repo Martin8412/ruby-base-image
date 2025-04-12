@@ -1,0 +1,8 @@
+name: Build static Ruby
+on: [push]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@4
