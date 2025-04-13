@@ -12,6 +12,6 @@ jobs:
                 username: ${{ vars.DOCKERHUB_USERNAME }}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
             - name: Build base image
-              run: bazel build //base:image_push
+              run: bazel build //...
             - name: Build image
               run: docker build -t test .
