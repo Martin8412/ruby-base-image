@@ -1,0 +1,12 @@
+bazel_dep(name = "rules_distroless", version = "0.5.1")
+bazel_dep(name = "aspect_bazel_lib", version = "2.14.0")
+bazel_dep(name = "rules_oci", version = "2.2.5")
+bazel_dep(name = "platforms", version = "0.0.11")
+
+apt = use_extension("@rules_distroless//apt:extensions.bzl", "apt")
+apt.install(
+    name = "bookworm",
+    lock = "@@//base:bookworm.lock.json",
+    manifest = "//base:bookworm.yaml",
+)
+use_repo(apt, "bookworm")
