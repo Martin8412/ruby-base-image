@@ -1,7 +1,7 @@
 load("@aspect_bazel_lib//lib:tar.bzl", "tar")
 load("@aspect_bazel_lib//lib:transitions.bzl", "platform_transition_filegroup")
 load("@rules_distroless//distroless:defs.bzl", "cacerts", "group", "os_release", "passwd")
-load("@rules_oci//oci:defs.bzl", "oci_image")
+load("@rules_oci//oci:defs.bzl", "oci_image", "oci_push")
 
 COMPATIBLE_WITH = select({
     "@platforms//cpu:x86_64": ["@platforms//cpu:x86_64"],
@@ -101,6 +101,15 @@ oci_image(
         ":cacerts",
         ":os_release",
     ],
+)
+
+oci_push(
+    name = "push",
+    image = ":image",
+    remote_tags = [
+        "distrolesstest",
+    ],
+    repository = "martin8412/ruby_base_image",
 )
 
 platform(
