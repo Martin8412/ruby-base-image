@@ -104,7 +104,7 @@ oci_image(
 )
 
 oci_push(
-    name = "push",
+    name = "image_push",
     image = ":image",
     remote_tags = [
         "distrolesstest",
